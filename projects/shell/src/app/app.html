@@ -1,0 +1,55 @@
+<header class="chrome">
+  <span class="brand">Renal Care Suite</span>
+  <span class="tag">shell · Angular {{ angularVersion }} · Native Federation v4</span>
+
+  <nav>
+    @for (remote of remotes; track remote.remoteName) {
+      <a [routerLink]="['/', remote.segment]" routerLinkActive="active">{{ remote.title }}</a>
+    }
+  </nav>
+
+  <label class="locale">
+    locale
+    <select [value]="shell.locale()" (change)="onLocaleChange($event)">
+      @for (option of shell.supportedLocales; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </label>
+
+  <span class="patient">patient {{ shell.patientId() }}</span>
+</header>
+
+@if (shell.notice(); as notice) {
+  <div class="strip" [attr.data-severity]="notice.severity">
+    <span>{{ notice.source }}: {{ notice.message }}</span>
+    <button type="button" (click)="shell.dismissNotice()">dismiss</button>
+  </div>
+}
+
+@if (failures.quarantined().size > 0) {
+  <div class="strip" data-severity="warning">
+    <span>
+      Quarantined microfrontends: {{ [...failures.quarantined()].join(', ') }} — the rest of the
+      suite is unaffected.
+    </span>
+  </div>
+}
+
+<main>
+  <router-outlet />
+</main>
+
+@if (failures.blocking(); as blocking) {
+  <div class="scrim">
+    <div class="dialog" role="alertdialog" aria-modal="true">
+      <h2>Something went wrong</h2>
+      <p><strong>{{ blocking.source }}</strong> reported an unrecoverable problem.</p>
+      <p class="detail">{{ blocking.message }}</p>
+      <div class="dialog-actions">
+        <button type="button" (click)="failures.clear()">Continue anyway</button>
+        <button type="button" class="primary" (click)="reload()">Reload the shell</button>
+      </div>
+    </div>
+  </div>
+}

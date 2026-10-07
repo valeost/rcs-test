@@ -1,0 +1,36 @@
+/**
+ * Shell-global styles.
+ *
+ * The custom properties on :root are the suite's theming contract. Ordinary
+ * CSS rules cannot reach into a microfrontend's Shadow Root — that is the
+ * point of Shadow DOM — but custom properties inherit through it by design,
+ * which is what lets the Shell theme every microfrontend with no CSS coupling.
+ */
+
+:root {
+  --rcs-page: #f4f6f8;
+  --rcs-surface: #ffffff;
+  --rcs-border: #d7dbe0;
+  --rcs-text: #1b1f23;
+  --rcs-muted: #5a6572;
+  --rcs-accent: #2f6feb;
+  --rcs-danger: #c92a2a;
+  --rcs-radius: 10px;
+  --rcs-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--rcs-font);
+  color: var(--rcs-text);
+  background: var(--rcs-page);
+}
+
+* {
+  box-sizing: border-box;
+}

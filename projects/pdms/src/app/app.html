@@ -1,0 +1,62 @@
+<rcs-card
+  heading="Prescriptions"
+  [subheading]="patientName() + ' · ' + (patientId() || 'no patient') + ' · route ' + (route() || '/')"
+>
+  <div card-actions class="meta">
+    <rcs-status-pill [label]="'ng ' + angularVersion" />
+    <rcs-status-pill [label]="locale()" />
+  </div>
+
+  <div class="patients">
+    <span class="label">Switch patient</span>
+    @for (patient of patients; track patient.id) {
+      <button
+        type="button"
+        class="chip"
+        [class.current]="patient.id === patientId()"
+        (click)="announcePatient(patient.id)"
+      >
+        {{ patient.name }}
+      </button>
+    }
+  </div>
+
+  @if (prescriptions().length === 0) {
+    <p class="empty">No prescriptions recorded for this patient.</p>
+  } @else {
+    <ul class="list">
+      @for (prescription of prescriptions(); track prescription.id) {
+        <li
+          class="row"
+          [class.selected]="prescription.id === selectedPrescriptionId()"
+          (click)="select(prescription)"
+        >
+          <div class="row-main">
+            <strong>{{ prescription.therapy }}</strong>
+            <rcs-status-pill [label]="prescription.status" [tone]="tone(prescription.status)" />
+          </div>
+          <div class="row-detail">
+            <span>{{ prescription.id }}</span>
+            <span>{{ prescription.schedule }}</span>
+            <span>{{ prescription.dialysate }}</span>
+          </div>
+          <time>Updated {{ formatDate(prescription.updatedAt) }}</time>
+        </li>
+      }
+    </ul>
+  }
+
+  <footer class="actions">
+    <button type="button" class="primary" (click)="openSessionView()">Open session view</button>
+    <button type="button" (click)="notifyShell()">Notify shell</button>
+    <button type="button" class="danger" (click)="simulateFailure()">Simulate failure</button>
+  </footer>
+
+  @if (lastAction()) {
+    <p class="log">{{ lastAction() }}</p>
+  }
+
+  @if (hostContext(); as context) {
+    <p class="log">Hosted by shell build {{ context.shellBuildId }}</p>
+  }
+</rcs-card>

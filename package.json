@@ -1,0 +1,38 @@
+{
+  "name": "renal-care-suite",
+  "version": "0.0.0",
+  "description": "Renal Care Suite — Angular monorepo with a shell and two Native Federation microfrontends (PDMS, Session View) plus a shared features package.",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "./dev.sh",
+    "start:shell": "ng serve shell",
+    "start:pdms": "ng serve pdms",
+    "start:session-view": "ng serve session-view",
+    "build": "npm run build:pdms && npm run build:session-view && npm run build:shell",
+    "build:shell": "ng build shell",
+    "build:pdms": "ng build pdms",
+    "build:session-view": "ng build session-view",
+    "clean": "rm -rf dist .angular/cache node_modules/.cache/native-federation"
+  },
+  "dependencies": {
+    "@angular-architects/native-federation-v4": "^21.2.12",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/elements": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "es-module-shims": "^2.8.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.24",
+    "@angular/cli": "^21.2.24",
+    "@angular/compiler-cli": "^21.2.0",
+    "@softarc/native-federation-orchestrator": "^4.6.0",
+    "typescript": "~5.9.2"
+  }
+}

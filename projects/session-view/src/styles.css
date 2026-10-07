@@ -1,0 +1,7 @@
+/* Standalone harness only — inside the Shell the component renders into a Shadow Root. */
+body {
+  margin: 0;
+  padding: 1.5rem;
+  background: #f4f6f8;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

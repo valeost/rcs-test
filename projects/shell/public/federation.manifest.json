@@ -1,0 +1,4 @@
+{
+  "pdms": "http://localhost:4201/remoteEntry.json",
+  "session-view": "http://localhost:4202/remoteEntry.json"
+}

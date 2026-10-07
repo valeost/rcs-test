@@ -1,0 +1,147 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.25rem;
+  background: var(--rcs-surface);
+  border-bottom: 1px solid var(--rcs-border);
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.tag,
+.patient {
+  font-size: 0.75rem;
+  color: var(--rcs-muted);
+}
+
+nav {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+nav a {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: var(--rcs-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+nav a.active {
+  border-color: var(--rcs-accent);
+  color: var(--rcs-accent);
+  font-weight: 600;
+}
+
+.locale {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--rcs-muted);
+}
+
+.locale select {
+  font: inherit;
+  padding: 0.2rem 0.375rem;
+  border-radius: 6px;
+  border: 1px solid var(--rcs-border);
+  background: var(--rcs-surface);
+}
+
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8125rem;
+  background: #eef3fd;
+  border-bottom: 1px solid var(--rcs-border);
+}
+
+.strip[data-severity='warning'] {
+  background: #fff4e0;
+}
+
+.strip[data-severity='error'] {
+  background: #fdeaea;
+  color: var(--rcs-danger);
+}
+
+.strip button {
+  font: inherit;
+  font-size: 0.75rem;
+  background: none;
+  border: 1px solid var(--rcs-border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  cursor: pointer;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 45%);
+  display: grid;
+  place-items: center;
+}
+
+.dialog {
+  background: var(--rcs-surface);
+  border-radius: var(--rcs-radius);
+  padding: 1.5rem;
+  max-width: 28rem;
+}
+
+.dialog h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.dialog .detail {
+  color: var(--rcs-muted);
+  font-size: 0.8125rem;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.dialog-actions button {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--rcs-border);
+  background: var(--rcs-surface);
+  cursor: pointer;
+}
+
+.dialog-actions .primary {
+  border-color: var(--rcs-accent);
+  background: var(--rcs-accent);
+  color: #fff;
+}

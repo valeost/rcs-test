@@ -1,0 +1,11 @@
+/*
+ * Global styles only apply to the standalone harness: inside the Shell this
+ * file is never loaded, and the component renders into a Shadow Root.
+ * Everything visual therefore lives in the component styles.
+ */
+body {
+  margin: 0;
+  padding: 1.5rem;
+  background: #f4f6f8;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

@@ -1,0 +1,48 @@
+<rcs-card
+  heading="Treatment sessions"
+  [subheading]="
+    (effectivePatientId() || 'no patient') +
+    (followedLabel() ? ' · following ' + followedLabel() : '') +
+    ' · route ' + (route() || '/')
+  "
+>
+  <div card-actions class="meta">
+    <rcs-status-pill [label]="'ng ' + angularVersion" />
+    <rcs-status-pill [label]="locale()" />
+  </div>
+
+  @if (sessions().length === 0) {
+    <p class="empty">No treatment sessions recorded for this patient.</p>
+  } @else {
+    <ul class="list">
+      @for (session of sessions(); track session.id) {
+        <li class="session" [class.alarm]="session.state === 'alarm'">
+          <button type="button" class="session-head" (click)="toggle(session)">
+            <span class="id">{{ session.id }}</span>
+            <span class="machine">{{ session.machine }}</span>
+            <rcs-status-pill [label]="session.state" [tone]="tone(session.state)" />
+            <span class="chevron">{{ expandedId() === session.id ? '−' : '+' }}</span>
+          </button>
+          <time>{{ formatDate(session.startedAt) }}</time>
+
+          @if (expandedId() === session.id) {
+            <dl class="readings">
+              @for (reading of session.readings; track reading.label) {
+                <div class="reading">
+                  <dt>{{ reading.label }}</dt>
+                  <dd><rcs-status-pill [label]="reading.value" [tone]="reading.tone" /></dd>
+                </div>
+              }
+            </dl>
+          }
+        </li>
+      }
+    </ul>
+  }
+
+  <footer class="actions">
+    <button type="button" class="primary" (click)="backToPdms()">Back to PDMS</button>
+    <button type="button" (click)="raiseAlarmNotice()">Report alarms</button>
+    <button type="button" class="danger" (click)="simulateFailure()">Simulate failure</button>
+  </footer>
+</rcs-card>

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/session-view",
+    "types": []
+  },
+  "include": [
+    "src/**/*.ts",
+    "../shared-features/src/**/*.ts"
+  ],
+  "exclude": ["src/**/*.spec.ts"]
+}

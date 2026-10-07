@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PDMS — standalone</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!--
+      Standalone harness. The Shell sets exactly these attributes at runtime,
+      so developing against this page is developing against the real contract.
+    -->
+    <rcs-pdms
+      mfe-id="pdms"
+      route=""
+      locale="en"
+      patient-id="P-1001"
+      api-base-url="http://localhost:4201/api"
+    ></rcs-pdms>
+  </body>
+</html>
